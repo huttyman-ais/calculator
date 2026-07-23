@@ -1,7 +1,11 @@
 name: Deploy Next.js to Azure App Service
 
 on:
-  workflow_dispatch: # เปิดให้สั่ง Trigger ผ่าน API / Port ได้
+  workflow_dispatch:
+    inputs:
+      port_context:
+        required: false
+        type: string
 
 jobs:
   build-and-deploy:
