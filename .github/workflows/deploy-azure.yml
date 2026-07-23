@@ -8,9 +8,18 @@ on:
         type: string
 
 jobs:
+
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Run Security Vulnerability Scan (Trivy)
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: 'fs'
+          ignore-unfixed: true
+          format: 'sarif'
+          output: 'trivy-results.sarif'
+          
       - name: Checkout Code
         uses: actions/checkout@v3
 
