@@ -1,0 +1,28 @@
+name: Deploy Next.js to Azure App Service
+
+on:
+  workflow_dispatch: # เปิดให้สั่ง Trigger ผ่าน API / Port ได้
+
+jobs:
+  build-and-deploy:
+    runs-runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install Dependencies & Build
+        run: |
+          npm ci
+          npm run build
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: 'calc-nextjs-app' # <--- เปลี่ยนเป็นชื่อ App Service ของคุณบน Azure
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: .
