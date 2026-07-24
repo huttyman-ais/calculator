@@ -36,6 +36,6 @@ jobs:
       - name: Deploy to Azure Web App
         uses: azure/webapps-deploy@v2
         with:
-          app-name: 'calc-nextjs-app' # <--- เปลี่ยนเป็นชื่อ App Service ของคุณบน Azure
+          app-name: 'calc-poc-nextjs-app-tossapong' # <--- เปลี่ยนเป็นชื่อ App Service ของคุณบน Azure
           publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
           package: .
